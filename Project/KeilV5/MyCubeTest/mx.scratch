@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project>
-<ProjectName>D:\work\MyCubeTest\\MyCubeTest</ProjectName>
+<ProjectName>E:\work\WorkBranch\Project\KeilV5\MyCubeTest\\MyCubeTest</ProjectName>
 <ProjectNature>C</ProjectNature> 
 <CMSIS>..\Drivers\CMSIS</CMSIS>
-<HAL_Driver>C:\Users\ninebot1093\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Drivers\CMSIS</HAL_Driver>
+<HAL_Driver>C:\Users\duking\STM32Cube\Repository\STM32Cube_FW_F4_V1.21.0\Drivers\CMSIS</HAL_Driver>
 <Toolchain>MDK-ARM</Toolchain>
 	<Toolversion>5</Toolversion>
 <Version>0</Version>
@@ -116,6 +116,9 @@
 							<name>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c</name>
 						</file>
 						<file>
+							<name>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c</name>
+						</file>
+						<file>
 							<name>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c</name>
 						</file>
 						<file>
@@ -173,6 +176,10 @@
 
                                 <file>
                                  <name>..\Src\freertos.c</name>
+                                </file>
+
+                                <file>
+                                 <name>..\Src\usart.c</name>
                                 </file>
 
                                 <file>

@@ -1,7 +1,8 @@
 /**
   ******************************************************************************
-  * File Name          : freertos.c
-  * Description        : Code for freertos applications
+  * File Name          : USART.h
+  * Description        : This file provides code for the configuration
+  *                      of the USART instances.
   ******************************************************************************
   * This notice applies to any and all portions of this file
   * that are not between comment pairs USER CODE BEGIN and
@@ -45,108 +46,46 @@
   *
   ******************************************************************************
   */
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __usart_H
+#define __usart_H
+#ifdef __cplusplus
+ extern "C" {
+#endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "FreeRTOS.h"
-#include "task.h"
-#include "cmsis_os.h"
+#include "stm32f4xx_hal.h"
+#include "main.h"
 
-/* USER CODE BEGIN Includes */     
-#include "gpio.h"
-#include "usart.h"
+/* USER CODE BEGIN Includes */
+
 /* USER CODE END Includes */
 
-/* Variables -----------------------------------------------------------------*/
-osThreadId MyLedTaskHandle;
-osThreadId myUsartTaskHandle;
+extern UART_HandleTypeDef huart2;
 
-/* USER CODE BEGIN Variables */
+/* USER CODE BEGIN Private defines */
 
-/* USER CODE END Variables */
+/* USER CODE END Private defines */
 
-/* Function prototypes -------------------------------------------------------*/
-void LedTask(void const * argument);
-void UsartTask(void const * argument);
+extern void _Error_Handler(char *, int);
 
-void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+void MX_USART2_UART_Init(void);
 
-/* USER CODE BEGIN FunctionPrototypes */
+/* USER CODE BEGIN Prototypes */
 
-/* USER CODE END FunctionPrototypes */
+/* USER CODE END Prototypes */
 
-/* Hook prototypes */
-
-/* Init FreeRTOS */
-
-void MX_FREERTOS_Init(void) {
-  /* USER CODE BEGIN Init */
-       
-  /* USER CODE END Init */
-
-  /* USER CODE BEGIN RTOS_MUTEX */
-  /* add mutexes, ... */
-  /* USER CODE END RTOS_MUTEX */
-
-  /* USER CODE BEGIN RTOS_SEMAPHORES */
-  /* add semaphores, ... */
-  /* USER CODE END RTOS_SEMAPHORES */
-
-  /* USER CODE BEGIN RTOS_TIMERS */
-  /* start timers, add new ones, ... */
-  /* USER CODE END RTOS_TIMERS */
-
-  /* Create the thread(s) */
-  /* definition and creation of MyLedTask */
-  osThreadDef(MyLedTask, LedTask, osPriorityNormal, 0, 128);
-  MyLedTaskHandle = osThreadCreate(osThread(MyLedTask), NULL);
-
-  /* definition and creation of myUsartTask */
-  osThreadDef(myUsartTask, UsartTask, osPriorityIdle, 0, 128);
-  myUsartTaskHandle = osThreadCreate(osThread(myUsartTask), NULL);
-
-  /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
-  /* USER CODE END RTOS_THREADS */
-
-  /* USER CODE BEGIN RTOS_QUEUES */
-  /* add queues, ... */
-  /* USER CODE END RTOS_QUEUES */
+#ifdef __cplusplus
 }
+#endif
+#endif /*__ usart_H */
 
-/* LedTask function */
-void LedTask(void const * argument)
-{
+/**
+  * @}
+  */
 
-  /* USER CODE BEGIN LedTask */
-  /* Infinite loop */
-  for(;;)
-  {
-		HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);
-
-    osDelay(100);
-  }
-  /* USER CODE END LedTask */
-}
-
-uint8_t aTxStartMessage[] = "\r\n****UART-Hyperterminal communication based on IT ****\r\nEnter 10 characters using keyboard :\r\n";
-/* Buffer used for reception */
-
-/* UsartTask function */
-void UsartTask(void const * argument)
-{
-  /* USER CODE BEGIN UsartTask */
-  /* Infinite loop */
-  for(;;)
-  {
-		//printf("Hello	World!\n");
-		//HAL_UART_Transmit_IT(&huart2,(uint8_t *)aTxStartMessage,sizeof(aTxStartMessage));
-    osDelay(1000);
-  }
-  /* USER CODE END UsartTask */
-}
-
-/* USER CODE BEGIN Application */
-     
-/* USER CODE END Application */
+/**
+  * @}
+  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
